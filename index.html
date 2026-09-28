@@ -1,277 +1,580 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>QUALIG - Gestão da Qualidade</title>
+```
+<title>QUALIG - Gestão da Qualidade</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
-    <!-- ============================= -->
-    <!-- TELA DE LOGIN -->
-    <!-- ============================= -->
+```
+<!-- ============================= -->
+<!-- TELA DE LOGIN -->
+<!-- ============================= -->
 
-    <div id="telaLogin" class="tela-login">
+<div id="telaLogin" class="tela-login">
 
-        <div class="login-card">
+    <div class="login-card">
 
-            <div class="login-logo">
-                <div class="login-logo-icon">Q</div>
+        <div class="login-logo">
+            <div class="login-logo-icon">Q</div>
 
-                <h1>QUALIG</h1>
+            <h1>QUALIG</h1>
 
-                <p>Sistema de Gestão da Qualidade</p>
-            </div>
+            <p>Sistema de Gestão da Qualidade</p>
+        </div>
 
-            <form id="formLogin">
+        <form id="formLogin">
 
-                <div class="campo-login">
-                    <label for="emailLogin">E-mail</label>
+            <div class="campo-login">
+                <label for="emailLogin">E-mail</label>
 
-                    <input
-                        type="email"
-                        id="emailLogin"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="email"
-                        required
-                    >
-                </div>
-
-                <div class="campo-login">
-                    <label for="senhaLogin">Senha</label>
-
-                    <input
-                        type="password"
-                        id="senhaLogin"
-                        placeholder="Digite sua senha"
-                        autocomplete="current-password"
-                        required
-                    >
-                </div>
-
-                <div
-                    id="mensagemLogin"
-                    class="mensagem-login"
-                ></div>
-
-                <button
-                    type="submit"
-                    id="btnLogin"
-                    class="btn-login"
+                <input
+                    type="email"
+                    id="emailLogin"
+                    placeholder="Digite seu e-mail"
+                    autocomplete="email"
+                    required
                 >
-                    Entrar
-                </button>
+            </div>
 
-            </form>
+            <div class="campo-login">
+                <label for="senhaLogin">Senha</label>
 
-            <!-- RECUPERAÇÃO DE SENHA -->
-
-            <div class="recuperar-senha">
-
-                <button
-                    type="button"
-                    id="btnEsqueciSenha"
-                    class="btn-link"
+                <input
+                    type="password"
+                    id="senhaLogin"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required
                 >
-                    Esqueci minha senha
-                </button>
-
             </div>
 
-            <div class="login-footer">
-                Qualig • Gestão da Qualidade
-            </div>
+            <div id="mensagemLogin" class="mensagem-login"></div>
 
+            <button
+                type="submit"
+                id="btnLogin"
+                class="btn-login"
+            >
+                Entrar
+            </button>
+
+        </form>
+
+        <div class="recuperar-senha">
+            <button
+                type="button"
+                id="btnEsqueciSenha"
+                class="btn-link"
+            >
+                Esqueci minha senha
+            </button>
+        </div>
+
+        <div class="login-footer">
+            Qualig • Gestão da Qualidade
         </div>
 
     </div>
 
+</div>
 
-    <!-- ============================= -->
-    <!-- SISTEMA -->
-    <!-- ============================= -->
 
-    <div
-        id="sistema"
-        class="layout"
-        style="display: none;"
-    >
+<!-- ============================= -->
+<!-- SISTEMA -->
+<!-- ============================= -->
 
-        <!-- SIDEBAR -->
+<div
+    id="sistema"
+    class="layout"
+    style="display: none;"
+>
 
-        <aside class="sidebar">
+    <!-- SIDEBAR -->
 
-            <div class="sidebar-logo">
+    <aside class="sidebar">
 
-                <div class="sidebar-logo-icon">
-                    Q
-                </div>
+        <div class="sidebar-logo">
 
-                <div>
-                    <strong>QUALIG</strong>
-                    <span>Gestão da Qualidade</span>
-                </div>
+            <div class="sidebar-logo-icon">
+                Q
+            </div>
+
+            <div>
+                <strong>QUALIG</strong>
+                <span>Gestão da Qualidade</span>
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <button class="menu-item ativo" data-page="dashboard">
+                🏠
+                <span>Dashboard</span>
+            </button>
+
+            <button class="menu-item" data-page="auditorias">
+                🔍
+                <span>Auditorias</span>
+            </button>
+
+            <button class="menu-item" data-page="requisitos">
+                📋
+                <span>Requisitos</span>
+            </button>
+
+            <button class="menu-item" data-page="documentos">
+                📄
+                <span>Documentos</span>
+            </button>
+
+            <button class="menu-item" data-page="evidencias">
+                📎
+                <span>Evidências</span>
+            </button>
+
+            <button class="menu-item" data-page="nao-conformidades">
+                ⚠️
+                <span>Não Conformidades</span>
+            </button>
+
+            <button class="menu-item" data-page="planos">
+                🛠️
+                <span>Planos de Ação</span>
+            </button>
+
+            <button class="menu-item" data-page="indicadores">
+                📊
+                <span>Indicadores</span>
+            </button>
+
+            <button class="menu-item" data-page="usuarios">
+                👥
+                <span>Usuários</span>
+            </button>
+
+            <button class="menu-item" data-page="configuracoes">
+                ⚙️
+                <span>Configurações</span>
+            </button>
+
+        </nav>
+
+        <div class="user-area">
+
+            <div class="user-info">
+
+                <strong id="nomeUsuario">
+                    Administrador
+                </strong>
+
+                <span id="perfilUsuario">
+                    Administrador
+                </span>
 
             </div>
 
-
-            <nav class="menu">
-
-                <button
-                    class="menu-item ativo"
-                    data-page="dashboard"
-                >
-                    🏠
-                    <span>Dashboard</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="auditorias"
-                >
-                    🔍
-                    <span>Auditorias</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="requisitos"
-                >
-                    📋
-                    <span>Requisitos</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="documentos"
-                >
-                    📄
-                    <span>Documentos</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="evidencias"
-                >
-                    📎
-                    <span>Evidências</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="nao-conformidades"
-                >
-                    ⚠️
-                    <span>Não Conformidades</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="planos"
-                >
-                    🛠️
-                    <span>Planos de Ação</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="indicadores"
-                >
-                    📊
-                    <span>Indicadores</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="usuarios"
-                >
-                    👥
-                    <span>Usuários</span>
-                </button>
-
-                <button
-                    class="menu-item"
-                    data-page="configuracoes"
-                >
-                    ⚙️
-                    <span>Configurações</span>
-                </button>
-
-            </nav>
-
-
-            <!-- USUÁRIO -->
-
-            <div class="user-area">
-
-                <div class="user-info">
-
-                    <strong id="nomeUsuario">
-                        Administrador
-                    </strong>
-
-                    <span id="perfilUsuario">
-                        Administrador
-                    </span>
-
-                </div>
-
-                <button
-                    id="btnSair"
-                    class="btn-sair"
-                    type="button"
-                >
-                    🚪 Sair
-                </button>
-
-            </div>
-
-        </aside>
-
-
-        <!-- CONTEÚDO PRINCIPAL -->
-
-        <main class="main-content">
-
-            <header class="topbar">
-
-                <div>
-                    <h2 id="tituloPagina">
-                        Dashboard
-                    </h2>
-
-                    <p id="subtituloPagina">
-                        Visão geral do sistema
-                    </p>
-                </div>
-
-            </header>
-
-
-            <section
-                id="conteudoPagina"
-                class="conteudo-pagina"
+            <button
+                id="btnSair"
+                class="btn-sair"
+                type="button"
             >
+                🚪 Sair
+            </button>
 
-            </section>
+        </div>
 
-        </main>
-
-    </div>
+    </aside>
 
 
-    <!-- ============================= -->
-    <!-- SUPABASE -->
-    <!-- ============================= -->
+    <!-- CONTEÚDO PRINCIPAL -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <main class="main-content">
 
-    <script>
+        <header class="topbar">
 
-        const SUPABA
+            <div>
+                <h2 id="tituloPagina">
+                    Dashboard
+                </h2>
 
+                <p id="subtituloPagina">
+                    Visão geral do sistema
+                </p>
+            </div>
+
+        </header>
+
+        <section
+            id="conteudoPagina"
+            class="conteudo-pagina"
+        >
+
+            <div class="dashboard-inicial">
+
+                <h3>Bem-vinda ao QUALIG</h3>
+
+                <p>
+                    Sistema de Gestão da Qualidade
+                </p>
+
+                <div class="cards-dashboard">
+
+                    <div class="card-dashboard">
+                        <span>🔍</span>
+                        <strong>Auditorias</strong>
+                        <small>Gestão das auditorias</small>
+                    </div>
+
+                    <div class="card-dashboard">
+                        <span>⚠️</span>
+                        <strong>Não Conformidades</strong>
+                        <small>Acompanhe os desvios</small>
+                    </div>
+
+                    <div class="card-dashboard">
+                        <span>🛠️</span>
+                        <strong>Planos de Ação</strong>
+                        <small>Controle das ações</small>
+                    </div>
+
+                    <div class="card-dashboard">
+                        <span>📊</span>
+                        <strong>Indicadores</strong>
+                        <small>Visão dos resultados</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- LOGIN DE DEMONSTRAÇÃO -->
+<!-- ============================= -->
+
+<script>
+
+    const EMAIL_ADMIN = "admin@qualig.com";
+    const SENHA_ADMIN = "123456";
+
+    const formLogin = document.getElementById("formLogin");
+    const telaLogin = document.getElementById("telaLogin");
+    const sistema = document.getElementById("sistema");
+    const mensagemLogin = document.getElementById("mensagemLogin");
+    const btnSair = document.getElementById("btnSair");
+    const btnEsqueciSenha = document.getElementById("btnEsqueciSenha");
+
+    function mostrarSistema() {
+
+        telaLogin.style.display = "none";
+        sistema.style.display = "flex";
+
+        const nomeUsuario = document.getElementById("nomeUsuario");
+        const perfilUsuario = document.getElementById("perfilUsuario");
+
+        if (nomeUsuario) {
+            nomeUsuario.textContent = "Administrador";
+        }
+
+        if (perfilUsuario) {
+            perfilUsuario.textContent = "Administrador";
+        }
+
+        carregarDashboard();
+    }
+
+
+    function mostrarLogin() {
+
+        sistema.style.display = "none";
+        telaLogin.style.display = "flex";
+
+        formLogin.reset();
+
+        mensagemLogin.textContent = "";
+        mensagemLogin.style.display = "none";
+    }
+
+
+    formLogin.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const email = document
+            .getElementById("emailLogin")
+            .value
+            .trim()
+            .toLowerCase();
+
+        const senha = document
+            .getElementById("senhaLogin")
+            .value;
+
+        if (
+            email === EMAIL_ADMIN &&
+            senha === SENHA_ADMIN
+        ) {
+
+            sessionStorage.setItem(
+                "qualig_logado",
+                "true"
+            );
+
+            mostrarSistema();
+
+        } else {
+
+            mensagemLogin.textContent =
+                "E-mail ou senha inválidos.";
+
+            mensagemLogin.style.display = "block";
+
+        }
+
+    });
+
+
+    btnSair.addEventListener("click", function() {
+
+        sessionStorage.removeItem(
+            "qualig_logado"
+        );
+
+        mostrarLogin();
+
+    });
+
+
+    btnEsqueciSenha.addEventListener("click", function() {
+
+        mensagemLogin.textContent =
+            "Para esta versão de demonstração, utilize o acesso de Administrador.";
+
+        mensagemLogin.style.display = "block";
+
+    });
+
+
+    function carregarDashboard() {
+
+        const conteudo =
+            document.getElementById("conteudoPagina");
+
+        const titulo =
+            document.getElementById("tituloPagina");
+
+        const subtitulo =
+            document.getElementById("subtituloPagina");
+
+        if (!conteudo) return;
+
+        titulo.textContent = "Dashboard";
+
+        subtitulo.textContent =
+            "Visão geral do sistema";
+
+        conteudo.innerHTML = `
+
+            <div class="dashboard-inicial">
+
+                <h3>Bem-vinda ao QUALIG</h3>
+
+                <p>
+                    Sistema de Gestão da Qualidade
+                </p>
+
+                <div class="cards-dashboard">
+
+                    <div class="card-dashboard">
+                        <span>🔍</span>
+                        <strong>Auditorias</strong>
+                        <small>Gestão das auditorias</small>
+                    </div>
+
+                    <div class="card-dashboard">
+                        <span>⚠️</span>
+                        <strong>Não Conformidades</strong>
+                        <small>Acompanhe os desvios</small>
+                    </div>
+
+                    <div class="card-dashboard">
+                        <span>🛠️</span>
+                        <strong>Planos de Ação</strong>
+                        <small>Controle das ações</small>
+                    </div>
+
+                    <div class="card-dashboard">
+                        <span>📊</span>
+                        <strong>Indicadores</strong>
+                        <small>Visão dos resultados</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    const menuItems =
+        document.querySelectorAll(".menu-item");
+
+    menuItems.forEach(function(item) {
+
+        item.addEventListener("click", function() {
+
+            menuItems.forEach(function(menu) {
+                menu.classList.remove("ativo");
+            });
+
+            item.classList.add("ativo");
+
+            const pagina =
+                item.getAttribute("data-page");
+
+            abrirPagina(pagina);
+
+        });
+
+    });
+
+
+    function abrirPagina(pagina) {
+
+        const titulo =
+            document.getElementById("tituloPagina");
+
+        const subtitulo =
+            document.getElementById("subtituloPagina");
+
+        const conteudo =
+            document.getElementById("conteudoPagina");
+
+        const nomes = {
+
+            dashboard: [
+                "Dashboard",
+                "Visão geral do sistema"
+            ],
+
+            auditorias: [
+                "Auditorias",
+                "Gestão das auditorias"
+            ],
+
+            requisitos: [
+                "Requisitos",
+                "Controle dos requisitos da qualidade"
+            ],
+
+            documentos: [
+                "Documentos",
+                "Gestão dos documentos"
+            ],
+
+            evidencias: [
+                "Evidências",
+                "Controle das evidências"
+            ],
+
+            "nao-conformidades": [
+                "Não Conformidades",
+                "Gestão das não conformidades"
+            ],
+
+            planos: [
+                "Planos de Ação",
+                "Acompanhamento das ações"
+            ],
+
+            indicadores: [
+                "Indicadores",
+                "Indicadores de qualidade"
+            ],
+
+            usuarios: [
+                "Usuários",
+                "Gestão de usuários e permissões"
+            ],
+
+            configuracoes: [
+                "Configurações",
+                "Configurações do sistema"
+            ]
+
+        };
+
+
+        const info =
+            nomes[pagina] || nomes.dashboard;
+
+        titulo.textContent = info[0];
+        subtitulo.textContent = info[1];
+
+        if (pagina === "dashboard") {
+
+            carregarDashboard();
+
+            return;
+
+        }
+
+
+        conteudo.innerHTML = `
+
+            <div class="pagina-em-desenvolvimento">
+
+                <div class="icone-pagina">
+                    ⚙️
+                </div>
+
+                <h3>
+                    ${info[0]}
+                </h3>
+
+                <p>
+                    Este módulo está sendo desenvolvido
+                    no Qualig.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    if (
+        sessionStorage.getItem("qualig_logado") === "true"
+    ) {
+
+        mostrarSistema();
+
+    }
+
+</script>
+```
+
+</body>
+
+</html>
