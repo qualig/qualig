@@ -1,0 +1,1243 @@
+```css
+/* =========================================================
+   QUALIG — SISTEMA DE GESTÃO DA QUALIDADE
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+
+/* =========================================================
+   TELA DE LOGIN
+   ========================================================= */
+
+.tela-login {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(0, 174, 196, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #071b33 0%,
+            #0b2948 48%,
+            #0d4960 100%
+        );
+}
+
+
+/* =========================================================
+   CARD DE LOGIN
+   ========================================================= */
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    padding: 42px 42px 30px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.28);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    animation: aparecerLogin 0.45s ease;
+}
+
+
+@keyframes aparecerLogin {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   LOGO LOGIN
+   ========================================================= */
+
+.login-logo {
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+
+.login-logo-icon {
+    width: 68px;
+    height: 68px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0c4a6e,
+            #00a6b8
+        );
+
+    color: #ffffff;
+
+    font-size: 31px;
+    font-weight: 800;
+
+    box-shadow:
+        0 10px 25px rgba(0, 166, 184, 0.25);
+}
+
+
+.login-logo h1 {
+    color: #0b2948;
+
+    font-size: 30px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+}
+
+
+.login-logo p {
+    color: #718096;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CAMPOS LOGIN
+   ========================================================= */
+
+.campo-login {
+    margin-bottom: 19px;
+}
+
+
+.campo-login label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.campo-login input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 15px;
+
+    border: 1px solid #d9e1ea;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    color: #1f2937;
+
+    background: #fbfcfe;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.campo-login input:focus {
+    border-color: #08a6ba;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(8, 166, 186, 0.10);
+}
+
+
+.campo-login input::placeholder {
+    color: #a0aec0;
+}
+
+
+/* =========================================================
+   BOTÃO ENTRAR
+   ========================================================= */
+
+.btn-login {
+    width: 100%;
+
+    height: 49px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0c4a6e,
+            #009caf
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+
+    box-shadow:
+        0 8px 20px rgba(0, 156, 175, 0.20);
+}
+
+
+.btn-login:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 25px rgba(0, 156, 175, 0.28);
+}
+
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MENSAGEM LOGIN
+   ========================================================= */
+
+.mensagem-login {
+    min-height: 20px;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+
+.mensagem-login.erro {
+    color: #dc2626;
+}
+
+
+.mensagem-login.sucesso {
+    color: #16803c;
+}
+
+
+/* =========================================================
+   ESQUECI MINHA SENHA
+   ========================================================= */
+
+/*
+   IMPORTANTE:
+   Aqui NÃO usamos aparência de botão.
+*/
+
+.recuperar-senha {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 12px;
+
+    margin-bottom: 2px;
+}
+
+
+.btn-link {
+    appearance: none;
+    -webkit-appearance: none;
+
+    border: none !important;
+
+    outline: none;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+
+    padding: 0 !important;
+
+    margin: 0;
+
+    color: #087f95;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    border-radius: 0;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.btn-link:hover {
+    color: #075f70;
+
+    background: transparent !important;
+
+    text-decoration: underline;
+
+    transform: none !important;
+}
+
+
+.btn-link:active {
+    transform: none !important;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+}
+
+
+.btn-link:focus {
+    outline: none;
+}
+
+
+.btn-link:focus-visible {
+    outline: 2px solid rgba(8, 166, 186, 0.35);
+
+    outline-offset: 3px;
+
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   RODAPÉ LOGIN
+   ========================================================= */
+
+.login-footer {
+    margin-top: 28px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf1f5;
+
+    text-align: center;
+
+    color: #9aa6b2;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+
+.layout {
+    min-height: 100vh;
+
+    display: flex;
+
+    background: #f4f7fb;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    width: 260px;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            180deg,
+            #071b33 0%,
+            #092640 100%
+        );
+
+    color: #ffffff;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: 10;
+}
+
+
+/* LOGO SIDEBAR */
+
+.sidebar-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 25px 20px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.sidebar-logo-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0c9bb1,
+            #00c0c7
+        );
+
+    color: #ffffff;
+
+    font-weight: 800;
+
+    font-size: 20px;
+}
+
+
+.sidebar-logo strong {
+    display: block;
+
+    font-size: 19px;
+
+    letter-spacing: 1px;
+}
+
+
+.sidebar-logo span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #8fa6bb;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.menu {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 15px 12px;
+}
+
+
+.menu-item {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 13px;
+
+    margin-bottom: 5px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #b7c6d6;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+
+    color: #ffffff;
+}
+
+
+.menu-item.ativo {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 174, 196, 0.18),
+            rgba(0, 174, 196, 0.06)
+        );
+
+    color: #ffffff;
+
+    border-left: 3px solid #00b4c8;
+
+    padding-left: 10px;
+}
+
+
+.menu-item span {
+    flex: 1;
+}
+
+
+/* =========================================================
+   USUÁRIO
+   ========================================================= */
+
+.user-area {
+    padding: 15px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.user-info {
+    margin-bottom: 10px;
+
+    padding: 0 5px;
+}
+
+
+.user-info strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.user-info span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8fa6bb;
+
+    font-size: 11px;
+}
+
+
+.btn-sair {
+    width: 100%;
+
+    padding: 9px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #b7c6d6;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.btn-sair:hover {
+    background: rgba(220, 38, 38, 0.12);
+
+    color: #ffb4b4;
+}
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.main-content {
+    flex: 1;
+
+    margin-left: 260px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    min-height: 82px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 20px 30px;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid #e8edf3;
+}
+
+
+.topbar h2 {
+    color: #172b4d;
+
+    font-size: 22px;
+
+    margin-bottom: 3px;
+}
+
+
+.topbar p {
+    color: #8795a5;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.conteudo-pagina {
+    padding: 30px;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+.card {
+    background: #ffffff;
+
+    border-radius: 13px;
+
+    padding: 20px;
+
+    border: 1px solid #e8edf3;
+
+    box-shadow:
+        0 4px 14px rgba(20, 40, 70, 0.04);
+}
+
+
+.card h3 {
+    color: #728197;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 9px;
+}
+
+
+.card .numero {
+    color: #172b4d;
+
+    font-size: 29px;
+
+    font-weight: 700;
+}
+
+
+.card.azul {
+    border-top: 3px solid #2878c8;
+}
+
+
+.card.roxo {
+    border-top: 3px solid #805ad5;
+}
+
+
+.card.verde {
+    border-top: 3px solid #26a269;
+}
+
+
+.card.vermelho {
+    border-top: 3px solid #e05252;
+}
+
+
+.card.laranja {
+    border-top: 3px solid #e59b32;
+}
+
+
+.card.amarelo {
+    border-top: 3px solid #e5b73b;
+}
+
+
+.card.teal {
+    border-top: 3px solid #159ca7;
+}
+
+
+/* =========================================================
+   SEÇÕES
+   ========================================================= */
+
+.secao {
+    background: #ffffff;
+
+    border: 1px solid #e8edf3;
+
+    border-radius: 13px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+}
+
+
+.secao-titulo {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+
+.secao-titulo h3 {
+    color: #172b4d;
+
+    font-size: 16px;
+}
+
+
+.secao-titulo p {
+    color: #8795a5;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+.btn {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 9px 15px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        opacity 0.15s ease;
+}
+
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+
+.btn-primary {
+    background: #0b7c91;
+
+    color: #ffffff;
+}
+
+
+.btn-primary:hover {
+    box-shadow:
+        0 5px 15px rgba(11, 124, 145, 0.20);
+}
+
+
+.btn-secondary {
+    background: #eef2f6;
+
+    color: #425466;
+}
+
+
+.btn-danger {
+    background: #fff0f0;
+
+    color: #c53030;
+}
+
+
+/* =========================================================
+   FORMULÁRIOS
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+
+.form-group label {
+    margin-bottom: 6px;
+
+    color: #475569;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid #dce3eb;
+
+    border-radius: 8px;
+
+    padding: 10px 12px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #0b8ca2;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 140, 162, 0.08);
+}
+
+
+/* =========================================================
+   LISTAS
+   ========================================================= */
+
+.lista {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.lista-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 14px 16px;
+
+    background: #fafbfd;
+
+    border: 1px solid #edf1f5;
+
+    border-radius: 9px;
+}
+
+
+.lista-item strong {
+    display: block;
+
+    color: #26384f;
+
+    font-size: 13px;
+}
+
+
+.lista-item span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8a98a8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   DOCUMENTOS
+   ========================================================= */
+
+.documento-card {
+    background: #ffffff;
+
+    border: 1px solid #e7edf3;
+
+    border-left: 4px solid #2878c8;
+
+    border-radius: 10px;
+
+    padding: 17px;
+
+    margin-bottom: 10px;
+}
+
+
+.documento-card h4 {
+    color: #253858;
+
+    font-size: 14px;
+
+    margin-bottom: 6px;
+}
+
+
+.documento-card p {
+    color: #718096;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.status-verde {
+    background: #e7f7ee;
+
+    color: #16803c;
+}
+
+
+.status-amarelo {
+    background: #fff8df;
+
+    color: #9a6b00;
+}
+
+
+.status-laranja {
+    background: #fff0df;
+
+    color: #b65f00;
+}
+
+
+.status-vermelho {
+    background: #ffe9e9;
+
+    color: #c53030;
+}
+
+
+/* =========================================================
+   ESTADO VAZIO
+   ========================================================= */
+
+.empty-state {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: #8996a5;
+}
+
+
+.empty-state .icone {
+    font-size: 34px;
+
+    margin-bottom: 10px;
+}
+
+
+.empty-state h3 {
+    color: #526275;
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+}
+
+
+.empty-state p {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .dashboard-cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        margin-left: 220px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .tela-login {
+        padding: 18px;
+    }
+
+    .login-card {
+        padding: 32px 25px 25px;
+    }
+
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar-logo {
+        justify-content: center;
+
+        padding: 18px 10px;
+    }
+
+    .sidebar-logo > div:last-child {
+        display: none;
+    }
+
+    .menu-item {
+        justify-content: center;
+    }
+
+    .menu-item span {
+        display: none;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .btn-sair {
+        font-size: 0;
+    }
+
+    .btn-sair:first-letter {
+        font-size: 15px;
+    }
+
+    .main-content {
+        margin-left: 70px;
+    }
+
+    .conteudo-pagina {
+        padding: 18px;
+    }
+
+}
+```

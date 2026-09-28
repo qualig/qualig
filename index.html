@@ -1,0 +1,278 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QUALIG - Gestão da Qualidade</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ============================= -->
+    <!-- TELA DE LOGIN -->
+    <!-- ============================= -->
+
+    <div id="telaLogin" class="tela-login">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                <div class="login-logo-icon">Q</div>
+
+                <h1>QUALIG</h1>
+
+                <p>Sistema de Gestão da Qualidade</p>
+            </div>
+
+            <form id="formLogin">
+
+                <div class="campo-login">
+                    <label for="emailLogin">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="emailLogin"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="campo-login">
+                    <label for="senhaLogin">Senha</label>
+
+                    <input
+                        type="password"
+                        id="senhaLogin"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <div
+                    id="mensagemLogin"
+                    class="mensagem-login"
+                ></div>
+
+                <button
+                    type="submit"
+                    id="btnLogin"
+                    class="btn-login"
+                >
+                    Entrar
+                </button>
+
+            </form>
+
+            <!-- RECUPERAÇÃO DE SENHA -->
+
+            <div class="recuperar-senha">
+
+                <button
+                    type="button"
+                    id="btnEsqueciSenha"
+                    class="btn-link"
+                >
+                    Esqueci minha senha
+                </button>
+
+            </div>
+
+            <div class="login-footer">
+                Qualig • Gestão da Qualidade
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- SISTEMA -->
+    <!-- ============================= -->
+
+    <div
+        id="sistema"
+        class="layout"
+        style="display: none;"
+    >
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="sidebar-logo-icon">
+                    Q
+                </div>
+
+                <div>
+                    <strong>QUALIG</strong>
+                    <span>Gestão da Qualidade</span>
+                </div>
+
+            </div>
+
+
+            <nav class="menu">
+
+                <button
+                    class="menu-item ativo"
+                    data-page="dashboard"
+                >
+                    🏠
+                    <span>Dashboard</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="auditorias"
+                >
+                    🔍
+                    <span>Auditorias</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="requisitos"
+                >
+                    📋
+                    <span>Requisitos</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="documentos"
+                >
+                    📄
+                    <span>Documentos</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="evidencias"
+                >
+                    📎
+                    <span>Evidências</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="nao-conformidades"
+                >
+                    ⚠️
+                    <span>Não Conformidades</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="planos"
+                >
+                    🛠️
+                    <span>Planos de Ação</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="indicadores"
+                >
+                    📊
+                    <span>Indicadores</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="usuarios"
+                >
+                    👥
+                    <span>Usuários</span>
+                </button>
+
+                <button
+                    class="menu-item"
+                    data-page="configuracoes"
+                >
+                    ⚙️
+                    <span>Configurações</span>
+                </button>
+
+            </nav>
+
+
+            <!-- USUÁRIO -->
+
+            <div class="user-area">
+
+                <div class="user-info">
+
+                    <strong id="nomeUsuario">
+                        Administrador
+                    </strong>
+
+                    <span id="perfilUsuario">
+                        Administrador
+                    </span>
+
+                </div>
+
+                <button
+                    id="btnSair"
+                    class="btn-sair"
+                    type="button"
+                >
+                    🚪 Sair
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h2 id="tituloPagina">
+                        Dashboard
+                    </h2>
+
+                    <p id="subtituloPagina">
+                        Visão geral do sistema
+                    </p>
+                </div>
+
+            </header>
+
+
+            <section
+                id="conteudoPagina"
+                class="conteudo-pagina"
+            >
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- SUPABASE -->
+    <!-- ============================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABA
+```
