@@ -91,7 +91,6 @@
             padding: 0 14px;
             font-size: 15px;
             outline: none;
-            transition: 0.2s;
         }
 
         .campo input:focus {
@@ -109,7 +108,6 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
         }
 
         #btnLogin:hover {
@@ -156,6 +154,7 @@
             bottom: 0;
             display: flex;
             flex-direction: column;
+            z-index: 100;
         }
 
         .sidebar-logo {
@@ -186,6 +185,7 @@
         .menu {
             padding: 20px 12px;
             flex: 1;
+            overflow-y: auto;
         }
 
         .menu-item {
@@ -199,11 +199,13 @@
             font-size: 14px;
             cursor: pointer;
             transition: 0.2s;
+            border: none;
+            background: transparent;
+            text-align: left;
         }
 
         .menu-item:hover,
-        .menu-item.ativo,
-        .menu-item.active {
+        .menu-item.ativo {
             background: rgba(255,255,255,0.14);
             color: white;
         }
@@ -222,6 +224,7 @@
         .main {
             margin-left: 250px;
             min-height: 100vh;
+            width: calc(100% - 250px);
         }
 
         .topbar {
@@ -404,17 +407,164 @@
 
         .status-amarelo {
             background: #fef3c7;
-            color: #92400e;
+            color: #92400e !important;
         }
 
         .status-verde {
             background: #dcfce7;
-            color: #166534;
+            color: #166534 !important;
         }
 
         .status-vermelho {
             background: #fee2e2;
+            color: #991b1b !important;
+        }
+
+        /* ================================
+           TELAS INTERNAS
+        ================================= */
+
+        .pagina {
+            display: none;
+        }
+
+        .pagina.ativa {
+            display: block;
+        }
+
+        .cabecalho-pagina {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .cabecalho-pagina h1 {
+            font-size: 26px;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .cabecalho-pagina p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .btn-principal {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-principal:hover {
+            background: #1d4ed8;
+        }
+
+        .tabela-container {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #374151;
+            text-align: left;
+            font-size: 13px;
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 15px;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #4b5563;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .badge-azul {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-verde {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-amarelo {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-vermelho {
+            background: #fee2e2;
             color: #991b1b;
+        }
+
+        .cards-menores {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card-menor {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .card-menor h3 {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .card-menor strong {
+            font-size: 27px;
+            color: #111827;
+        }
+
+        .documento-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .documento-box h3 {
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .documento-box p {
+            color: #6b7280;
+            font-size: 13px;
         }
 
         /* ================================
@@ -424,6 +574,10 @@
         @media (max-width: 1000px) {
 
             .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cards-menores {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -455,9 +609,14 @@
 
             .main {
                 margin-left: 70px;
+                width: calc(100% - 70px);
             }
 
             .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-menores {
                 grid-template-columns: 1fr;
             }
 
@@ -472,197 +631,207 @@
             .usuario-info {
                 display: none;
             }
+
+            .tabela-container {
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ==========================================
-         LOGIN
-    =========================================== -->
+<!-- ==================================================
+     LOGIN
+================================================== -->
 
-    <div id="telaLogin">
+<div id="telaLogin">
 
-        <div class="login-container">
+    <div class="login-container">
 
-            <div class="logo-login">
+        <div class="logo-login">
 
-                <div class="logo-icon">
-                    Q
-                </div>
-
-                <h1>Qualig</h1>
-
-                <p>Gestão da Qualidade</p>
-
+            <div class="logo-icon">
+                Q
             </div>
 
-            <form id="formLogin">
+            <h1>Qualig</h1>
 
-                <div class="campo">
-
-                    <label for="emailLogin">
-                        E-mail
-                    </label>
-
-                    <input
-                        type="email"
-                        id="emailLogin"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="username"
-                        required
-                    >
-
-                </div>
-
-                <div class="campo">
-
-                    <label for="senhaLogin">
-                        Senha
-                    </label>
-
-                    <input
-                        type="password"
-                        id="senhaLogin"
-                        placeholder="Digite sua senha"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                </div>
-
-                <button
-                    type="submit"
-                    id="btnLogin"
-                >
-                    Entrar
-                </button>
-
-                <div id="mensagemLogin"></div>
-
-                <a
-                    href="#"
-                    class="esqueci"
-                >
-                    Esqueci minha senha
-                </a>
-
-            </form>
+            <p>Gestão da Qualidade</p>
 
         </div>
 
+        <form id="formLogin">
+
+            <div class="campo">
+
+                <label for="emailLogin">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="emailLogin"
+                    placeholder="Digite seu e-mail"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="senhaLogin">
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="senhaLogin"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                id="btnLogin"
+            >
+                Entrar
+            </button>
+
+            <div id="mensagemLogin"></div>
+
+            <a href="#" class="esqueci">
+                Esqueci minha senha
+            </a>
+
+        </form>
+
     </div>
 
+</div>
 
-    <!-- ==========================================
-         SISTEMA
-    =========================================== -->
 
-    <div id="sistema">
+<!-- ==================================================
+     SISTEMA
+================================================== -->
 
-        <!-- MENU -->
+<div id="sistema">
 
-        <aside class="sidebar">
+    <!-- MENU LATERAL -->
 
-            <div class="sidebar-logo">
+    <aside class="sidebar">
 
-                <div class="mini-logo">
-                    Q
+        <div class="sidebar-logo">
+
+            <div class="mini-logo">
+                Q
+            </div>
+
+            <strong>Qualig</strong>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <button class="menu-item ativo" data-pagina="dashboard">
+                <span>▣ &nbsp; Dashboard</span>
+            </button>
+
+            <button class="menu-item" data-pagina="auditorias">
+                <span>✓ &nbsp; Auditorias</span>
+            </button>
+
+            <button class="menu-item" data-pagina="requisitos">
+                <span>☷ &nbsp; Requisitos</span>
+            </button>
+
+            <button class="menu-item" data-pagina="documentos">
+                <span>▤ &nbsp; Documentos</span>
+            </button>
+
+            <button class="menu-item" data-pagina="evidencias">
+                <span>▧ &nbsp; Evidências</span>
+            </button>
+
+            <button class="menu-item" data-pagina="nao-conformidades">
+                <span>⚠ &nbsp; Não Conformidades</span>
+            </button>
+
+            <button class="menu-item" data-pagina="planos">
+                <span>✓ &nbsp; Planos de Ação</span>
+            </button>
+
+            <button class="menu-item" data-pagina="indicadores">
+                <span>◫ &nbsp; Indicadores</span>
+            </button>
+
+            <button class="menu-item" data-pagina="usuarios">
+                <span>♙ &nbsp; Usuários</span>
+            </button>
+
+            <button class="menu-item" data-pagina="configuracoes">
+                <span>⚙ &nbsp; Configurações</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            Sistema de Gestão da Qualidade<br>
+            <strong>Qualig</strong>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ÁREA PRINCIPAL -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h2 id="tituloTopo">
+                Dashboard
+            </h2>
+
+            <div class="usuario">
+
+                <div class="avatar">
+                    A
                 </div>
 
-                <strong>Qualig</strong>
+                <div class="usuario-info">
+
+                    <strong>Administrador</strong>
+
+                    <span>Acesso administrativo</span>
+
+                </div>
+
+                <button id="btnSair">
+                    Sair
+                </button>
 
             </div>
 
-
-            <nav class="menu">
-
-                <a class="menu-item ativo">
-                    <span>▣ &nbsp; Dashboard</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>✓ &nbsp; Auditorias</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>☷ &nbsp; Requisitos</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>▤ &nbsp; Documentos</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>▧ &nbsp; Evidências</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>⚠ &nbsp; Não Conformidades</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>✓ &nbsp; Planos de Ação</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>◫ &nbsp; Indicadores</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>♙ &nbsp; Usuários</span>
-                </a>
-
-                <a class="menu-item">
-                    <span>⚙ &nbsp; Configurações</span>
-                </a>
-
-            </nav>
+        </header>
 
 
-            <div class="sidebar-footer">
-
-                Sistema de Gestão da Qualidade<br>
-                <strong>Qualig</strong>
-
-            </div>
-
-        </aside>
+        <section class="conteudo">
 
 
-        <!-- ÁREA PRINCIPAL -->
+            <!-- ==================================================
+                 DASHBOARD
+            ================================================== -->
 
-        <main class="main">
-
-            <header class="topbar">
-
-                <h2>Dashboard</h2>
-
-                <div class="usuario">
-
-                    <div class="avatar">
-                        A
-                    </div>
-
-                    <div class="usuario-info">
-
-                        <strong>Administrador</strong>
-
-                        <span>Acesso administrativo</span>
-
-                    </div>
-
-                    <button id="btnSair">
-                        Sair
-                    </button>
-
-                </div>
-
-            </header>
-
-
-            <section class="conteudo">
+            <div id="pagina-dashboard" class="pagina ativa">
 
                 <div class="boas-vindas">
 
@@ -677,22 +846,16 @@
                 </div>
 
 
-                <!-- CARDS -->
-
                 <div class="cards">
 
                     <div class="card">
 
                         <div class="card-topo">
-
-                            <span class="card-titulo">
-                                Auditorias
-                            </span>
+                            <span class="card-titulo">Auditorias</span>
 
                             <div class="card-icone">
                                 ✓
                             </div>
-
                         </div>
 
                         <div class="card-numero">
@@ -705,15 +868,11 @@
                     <div class="card">
 
                         <div class="card-topo">
-
-                            <span class="card-titulo">
-                                Não Conformidades
-                            </span>
+                            <span class="card-titulo">Não Conformidades</span>
 
                             <div class="card-icone">
                                 !
                             </div>
-
                         </div>
 
                         <div class="card-numero">
@@ -726,15 +885,11 @@
                     <div class="card">
 
                         <div class="card-topo">
-
-                            <span class="card-titulo">
-                                Planos de Ação
-                            </span>
+                            <span class="card-titulo">Planos de Ação</span>
 
                             <div class="card-icone">
                                 ✓
                             </div>
-
                         </div>
 
                         <div class="card-numero">
@@ -747,15 +902,11 @@
                     <div class="card">
 
                         <div class="card-topo">
-
-                            <span class="card-titulo">
-                                Indicadores
-                            </span>
+                            <span class="card-titulo">Indicadores</span>
 
                             <div class="card-icone">
                                 %
                             </div>
-
                         </div>
 
                         <div class="card-numero">
@@ -767,10 +918,7 @@
                 </div>
 
 
-                <!-- PAINÉIS -->
-
                 <div class="painel-grid">
-
 
                     <div class="painel">
 
@@ -843,163 +991,919 @@
                         </h3>
 
                         <div class="linha">
-
                             <div>
                                 <strong>03</strong><br>
                                 <span>Auditorias próximas</span>
                             </div>
-
                         </div>
 
-
                         <div class="linha">
-
                             <div>
                                 <strong>05</strong><br>
                                 <span>Planos de ação vencendo</span>
                             </div>
-
                         </div>
 
-
                         <div class="linha">
-
                             <div>
                                 <strong>04</strong><br>
                                 <span>Não conformidades abertas</span>
                             </div>
-
                         </div>
 
-
                         <div class="linha">
-
                             <div>
                                 <strong>02</strong><br>
                                 <span>Documentos aguardando aprovação</span>
                             </div>
-
                         </div>
 
                     </div>
 
                 </div>
 
-            </section>
-
-        </main>
-
-    </div>
+            </div>
 
 
-    <!-- ==========================================
-         LOGIN - FUNCIONAMENTO
-    =========================================== -->
+            <!-- ==================================================
+                 AUDITORIAS
+            ================================================== -->
 
-    <script>
+            <div id="pagina-auditorias" class="pagina">
 
-        const EMAIL_DEMO = "admin@qualig.com";
-        const SENHA_DEMO = "123456";
+                <div class="cabecalho-pagina">
 
-        const telaLogin = document.getElementById("telaLogin");
-        const sistema = document.getElementById("sistema");
-        const formLogin = document.getElementById("formLogin");
-        const emailLogin = document.getElementById("emailLogin");
-        const senhaLogin = document.getElementById("senhaLogin");
-        const mensagemLogin = document.getElementById("mensagemLogin");
-        const btnSair = document.getElementById("btnSair");
+                    <div>
+                        <h1>Auditorias</h1>
 
+                        <p>
+                            Acompanhe e gerencie as auditorias da organização.
+                        </p>
+                    </div>
 
-        function mostrarSistema() {
+                    <button class="btn-principal">
+                        + Nova auditoria
+                    </button>
 
-            telaLogin.style.display = "none";
-            sistema.style.display = "flex";
-
-        }
+                </div>
 
 
-        function mostrarLogin() {
+                <div class="cards-menores">
 
-            telaLogin.style.display = "flex";
-            sistema.style.display = "none";
+                    <div class="card-menor">
+                        <h3>Total de auditorias</h3>
+                        <strong>08</strong>
+                    </div>
 
-        }
+                    <div class="card-menor">
+                        <h3>Em andamento</h3>
+                        <strong>03</strong>
+                    </div>
 
+                    <div class="card-menor">
+                        <h3>Concluídas</h3>
+                        <strong>05</strong>
+                    </div>
 
-        formLogin.addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-            const email = emailLogin.value.trim().toLowerCase();
-            const senha = senhaLogin.value;
-
-            if (
-                email === EMAIL_DEMO &&
-                senha === SENHA_DEMO
-            ) {
-
-                sessionStorage.setItem(
-                    "qualig_logado",
-                    "true"
-                );
-
-                mostrarSistema();
-
-            } else {
-
-                mensagemLogin.textContent =
-                    "E-mail ou senha incorretos.";
-
-                mensagemLogin.style.color =
-                    "#dc2626";
-
-            }
-
-        });
+                </div>
 
 
-        btnSair.addEventListener("click", function() {
+                <div class="tabela-container">
 
-            sessionStorage.removeItem(
-                "qualig_logado"
-            );
+                    <table>
 
-            mostrarLogin();
+                        <thead>
+                            <tr>
+                                <th>Auditoria</th>
+                                <th>Área</th>
+                                <th>Responsável</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
 
-            emailLogin.value = "";
-            senhaLogin.value = "";
-            mensagemLogin.textContent = "";
+                        <tbody>
 
-        });
+                            <tr>
+                                <td>Auditoria Interna #001</td>
+                                <td>Produção</td>
+                                <td>Qualidade</td>
+                                <td>28/09/2026</td>
+                                <td>
+                                    <span class="badge badge-amarelo">
+                                        Em andamento
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Auditoria SGQ #002</td>
+                                <td>Logística</td>
+                                <td>Administrador</td>
+                                <td>25/09/2026</td>
+                                <td>
+                                    <span class="badge badge-verde">
+                                        Concluída
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Auditoria #003</td>
+                                <td>Controle de Qualidade</td>
+                                <td>Qualidade</td>
+                                <td>02/10/2026</td>
+                                <td>
+                                    <span class="badge badge-azul">
+                                        Programada
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
 
 
-        document.querySelector(".esqueci")
-            .addEventListener("click", function(event) {
+            <!-- ==================================================
+                 REQUISITOS
+            ================================================== -->
 
-                event.preventDefault();
+            <div id="pagina-requisitos" class="pagina">
 
-                mensagemLogin.textContent =
-                    "Para demonstração: admin@qualig.com / 123456";
+                <div class="cabecalho-pagina">
 
-                mensagemLogin.style.color =
-                    "#2563eb";
+                    <div>
+                        <h1>Requisitos</h1>
 
-            });
+                        <p>
+                            Requisitos aplicáveis às áreas e processos.
+                        </p>
+                    </div>
 
+                    <button class="btn-principal">
+                        + Novo requisito
+                    </button>
+
+                </div>
+
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Código</th>
+                                <th>Requisito</th>
+                                <th>Área</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>REQ-001</td>
+                                <td>Boas Práticas de Fabricação</td>
+                                <td>Produção</td>
+                                <td>
+                                    <span class="badge badge-verde">
+                                        Ativo
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>REQ-002</td>
+                                <td>Controle de documentos</td>
+                                <td>Qualidade</td>
+                                <td>
+                                    <span class="badge badge-verde">
+                                        Ativo
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>REQ-003</td>
+                                <td>Gestão de evidências</td>
+                                <td>Todos</td>
+                                <td>
+                                    <span class="badge badge-amarelo">
+                                        Em revisão
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 DOCUMENTOS
+            ================================================== -->
+
+            <div id="pagina-documentos" class="pagina">
+
+                <div class="cabecalho-pagina">
+
+                    <div>
+                        <h1>Documentos</h1>
+
+                        <p>
+                            Controle e acompanhamento dos documentos do SGQ.
+                        </p>
+                    </div>
+
+                    <button class="btn-principal">
+                        + Novo documento
+                    </button>
+
+                </div>
+
+
+                <div class="documento-box">
+
+                    <h3>POP - Controle de documentos</h3>
+
+                    <p>
+                        Documento vigente • Revisão 03 • Qualidade
+                    </p>
+
+                </div>
+
+
+                <div class="documento-box">
+
+                    <h3>Procedimento de Auditoria Interna</h3>
+
+                    <p>
+                        Documento vigente • Revisão 02 • SGQ
+                    </p>
+
+                </div>
+
+
+                <div class="documento-box">
+
+                    <h3>Manual da Qualidade</h3>
+
+                    <p>
+                        Documento aguardando revisão • Revisão 05
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 EVIDÊNCIAS
+            ================================================== -->
+
+            <div id="pagina-evidencias" class="pagina">
+
+                <div class="cabecalho-pagina">
+
+                    <div>
+                        <h1>Evidências</h1>
+
+                        <p>
+                            Registros e evidências relacionados às auditorias.
+                        </p>
+
+                    </div>
+
+                    <button class="btn-principal">
+                        + Adicionar evidência
+                    </button>
+
+                </div>
+
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Evidência</th>
+                                <th>Auditoria</th>
+                                <th>Área</th>
+                                <th>Responsável</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Registro de treinamento</td>
+                                <td>#001</td>
+                                <td>Produção</td>
+                                <td>RH</td>
+                                <td>
+                                    <span class="badge badge-verde">
+                                        Validada
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Checklist de processo</td>
+                                <td>#001</td>
+                                <td>Produção</td>
+                                <td>Qualidade</td>
+                                <td>
+                                    <span class="badge badge-amarelo">
+                                        Em análise
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 NÃO CONFORMIDADES
+            ================================================== -->
+
+            <div id="pagina-nao-conformidades" class="pagina">
+
+                <div class="cabecalho-pagina">
+
+                    <div>
+                        <h1>Não Conformidades</h1>
+
+                        <p>
+                            Registro e acompanhamento das não conformidades.
+                        </p>
+                    </div>
+
+                    <button class="btn-principal">
+                        + Nova RNC
+                    </button>
+
+                </div>
+
+
+                <div class="cards-menores">
+
+                    <div class="card-menor">
+                        <h3>Em aberto</h3>
+                        <strong>04</strong>
+                    </div>
+
+                    <div class="card-menor">
+                        <h3>Em tratamento</h3>
+                        <strong>05</strong>
+                    </div>
+
+                    <div class="card-menor">
+                        <h3>Concluídas</h3>
+                        <strong>03</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Nº RNC</th>
+                                <th>Descrição</th>
+                                <th>Área</th>
+                                <th>Responsável</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>RNC-018</td>
+                                <td>Falha no registro de processo</td>
+                                <td>Produção</td>
+                                <td>João</td>
+                                <td>
+                                    <span class="badge badge-vermelho">
+                                        Pendente
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>RNC-017</td>
+                                <td>Documento fora da validade</td>
+                                <td>Qualidade</td>
+                                <td>Maria</td>
+                                <td>
+                                    <span class="badge badge-amarelo">
+                                        Tratamento
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 PLANOS DE AÇÃO
+            ================================================== -->
+
+            <div id="pagina-planos" class="pagina">
+
+                <div class="cabecalho-pagina">
+
+                    <div>
+                        <h1>Planos de Ação</h1>
+
+                        <p>
+                            Acompanhe ações corretivas e preventivas.
+                        </p>
+                    </div>
+
+                    <button class="btn-principal">
+                        + Novo plano
+                    </button>
+
+                </div>
+
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Plano</th>
+                                <th>Origem</th>
+                                <th>Responsável</th>
+                                <th>Prazo</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>PA-024</td>
+                                <td>RNC-018</td>
+                                <td>João</td>
+                                <td>30/09/2026</td>
+                                <td>
+                                    <span class="badge badge-amarelo">
+                                        Em andamento
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>PA-023</td>
+                                <td>Auditoria #002</td>
+                                <td>Maria</td>
+                                <td>25/09/2026</td>
+                                <td>
+                                    <span class="badge badge-verde">
+                                        Concluído
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 INDICADORES
+            ================================================== -->
+
+            <div id="pagina-indicadores" class="pagina">
+
+                <div class="cabecalho-pagina">
+
+                    <div>
+                        <h1>Indicadores</h1>
+
+                        <p>
+                            Indicadores de desempenho da Gestão da Qualidade.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="cards-menores">
+
+                    <div class="card-menor">
+                        <h3>Conformidade</h3>
+                        <strong>94%</strong>
+                    </div>
+
+                    <div class="card-menor">
+                        <h3>Auditorias concluídas</h3>
+                        <strong>87%</strong>
+                    </div>
+
+                    <div class="card-menor">
+                        <h3>Planos no prazo</h3>
+                        <strong>91%</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="painel">
+
+                    <h3>
+                        Indicadores cadastrados
+                    </h3>
+
+                    <div class="linha">
+                        <div>
+                            <strong>Índice de conformidade</strong><br>
+                            <span>Meta: 95%</span>
+                        </div>
+
+                        <strong>94%</strong>
+                    </div>
+
+                    <div class="linha">
+                        <div>
+                            <strong>Efetividade de ações</strong><br>
+                            <span>Meta: 90%</span>
+                        </div>
+
+                        <strong>91%</strong>
+                    </div>
+
+                    <div class="linha">
+                        <div>
+                            <strong>Auditorias no prazo</strong><br>
+                            <span>Meta: 90%</span>
+                        </div>
+
+                        <strong>87%</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 USUÁRIOS
+            ================================================== -->
+
+            <div id="pagina-usuarios" class="pagina">
+
+                <div class="cabecalho-pagina">
+
+                    <div>
+                        <h1>Usuários</h1>
+
+                        <p>
+                            Gerencie os usuários e seus respectivos acessos.
+                        </p>
+                    </div>
+
+                    <button class="btn-principal">
+                        + Novo usuário
+                    </button>
+
+                </div>
+
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Usuário</th>
+                                <th>E-mail</th>
+                                <th>Perfil</th>
+                                <th>Área</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Administrador</td>
+                                <td>admin@qualig.com</td>
+                                <td>Administrador</td>
+                                <td>Todas</td>
+                                <td>
+                                    <span class="badge badge-verde">
+                                        Ativo
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Usuário Qualidade</td>
+                                <td>qualidade@qualig.com</td>
+                                <td>Gestor</td>
+                                <td>Qualidade</td>
+                                <td>
+                                    <span class="badge badge-verde">
+                                        Ativo
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 CONFIGURAÇÕES
+            ================================================== -->
+
+            <div id="pagina-configuracoes" class="pagina">
+
+                <div class="cabecalho-pagina">
+
+                    <div>
+                        <h1>Configurações</h1>
+
+                        <p>
+                            Configurações gerais do sistema Qualig.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="documento-box">
+
+                    <h3>Dados da organização</h3>
+
+                    <p>
+                        Configure as informações da empresa e estrutura organizacional.
+                    </p>
+
+                </div>
+
+
+                <div class="documento-box">
+
+                    <h3>Perfis e permissões</h3>
+
+                    <p>
+                        Defina os níveis de acesso dos usuários do sistema.
+                    </p>
+
+                </div>
+
+
+                <div class="documento-box">
+
+                    <h3>Parâmetros da qualidade</h3>
+
+                    <p>
+                        Configure requisitos, indicadores e regras de acompanhamento.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* ==================================================
+       LOGIN
+    ================================================== */
+
+    const EMAIL_DEMO = "admin@qualig.com";
+    const SENHA_DEMO = "123456";
+
+    const telaLogin = document.getElementById("telaLogin");
+    const sistema = document.getElementById("sistema");
+
+    const formLogin = document.getElementById("formLogin");
+    const emailLogin = document.getElementById("emailLogin");
+    const senhaLogin = document.getElementById("senhaLogin");
+
+    const mensagemLogin = document.getElementById("mensagemLogin");
+    const btnSair = document.getElementById("btnSair");
+
+
+    function mostrarSistema() {
+
+        telaLogin.style.display = "none";
+        sistema.style.display = "flex";
+
+    }
+
+
+    function mostrarLogin() {
+
+        telaLogin.style.display = "flex";
+        sistema.style.display = "none";
+
+    }
+
+
+    formLogin.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const email = emailLogin.value.trim().toLowerCase();
+        const senha = senhaLogin.value;
 
         if (
-            sessionStorage.getItem("qualig_logado") === "true"
+            email === EMAIL_DEMO &&
+            senha === SENHA_DEMO
         ) {
+
+            sessionStorage.setItem(
+                "qualig_logado",
+                "true"
+            );
 
             mostrarSistema();
 
         } else {
 
-            mostrarLogin();
+            mensagemLogin.textContent =
+                "E-mail ou senha incorretos.";
+
+            mensagemLogin.style.color =
+                "#dc2626";
 
         }
 
-    </script>
+    });
+
+
+    btnSair.addEventListener("click", function() {
+
+        sessionStorage.removeItem(
+            "qualig_logado"
+        );
+
+        mostrarLogin();
+
+        emailLogin.value = "";
+        senhaLogin.value = "";
+        mensagemLogin.textContent = "";
+
+    });
+
+
+    document.querySelector(".esqueci")
+        .addEventListener("click", function(event) {
+
+            event.preventDefault();
+
+            mensagemLogin.textContent =
+                "Para demonstração: admin@qualig.com / 123456";
+
+            mensagemLogin.style.color =
+                "#2563eb";
+
+        });
+
+
+    /* ==================================================
+       NAVEGAÇÃO DO MENU
+    ================================================== */
+
+    const botoesMenu = document.querySelectorAll(".menu-item");
+
+    const paginas = document.querySelectorAll(".pagina");
+
+    const tituloTopo = document.getElementById("tituloTopo");
+
+
+    botoesMenu.forEach(function(botao) {
+
+        botao.addEventListener("click", function() {
+
+            const paginaSelecionada =
+                botao.getAttribute("data-pagina");
+
+
+            /* Remove seleção dos menus */
+
+            botoesMenu.forEach(function(item) {
+
+                item.classList.remove("ativo");
+
+            });
+
+
+            /* Ativa o menu clicado */
+
+            botao.classList.add("ativo");
+
+
+            /* Esconde todas as páginas */
+
+            paginas.forEach(function(pagina) {
+
+                pagina.classList.remove("ativa");
+
+            });
+
+
+            /* Mostra a página escolhida */
+
+            const pagina =
+                document.getElementById(
+                    "pagina-" + paginaSelecionada
+                );
+
+
+            if (pagina) {
+
+                pagina.classList.add("ativa");
+
+            }
+
+
+            /* Atualiza título */
+
+            const nomePagina =
+                botao.textContent.trim();
+
+            tituloTopo.textContent =
+                nomePagina;
+
+        });
+
+    });
+
+
+    /* ==================================================
+       MANTER LOGIN
+    ================================================== */
+
+    if (
+        sessionStorage.getItem("qualig_logado") === "true"
+    ) {
+
+        mostrarSistema();
+
+    } else {
+
+        mostrarLogin();
+
+    }
+
+</script>
 
 </body>
 </html>
